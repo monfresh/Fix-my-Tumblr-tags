@@ -135,6 +135,8 @@ GEM
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
+    omniauth-tumblr (1.0)
+      omniauth-oauth (~> 1.0)
     omniauth-twitter (0.0.9)
       omniauth-oauth (~> 1.0)
     polyglot (0.3.3)
@@ -235,6 +237,7 @@ DEPENDENCIES
   mongoid (>= 2.4.8)
   mongoid-rspec (>= 1.4.4)
   omniauth (>= 1.0.3)
+  omniauth-tumblr
   omniauth-twitter
   rails (= 3.2.2)
   rb-fsevent
