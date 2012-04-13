@@ -1,4 +1,11 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<p>User: <%= @user.name %></p>
+<h1>User: <%= @user.name %></h1>
+
 <p>Email: <%= @user.email if @user.email %></p>
+<p>You are following these blogs: 
+<ul>
+	<% @blogs_following.each do |f| %>
+		<li><%= f["name"] %></li>
+	<% end %>
+</ul>
+
+</p>

@@ -22,6 +22,15 @@ class UsersController < ApplicationController
 
 def show
     @user = User.find(params[:id])
+    tumblr_config = YAML.load(File.open("#{::Rails.root}/config/oauth.yml").read)
+    Tumblr.configure do |config|
+      config.consumer_key = tumblr_config['tumblr']['key']
+      config.consumer_secret = tumblr_config['tumblr']['secret']
+      config.oauth_token = @user.token
+      config.oauth_token_secret = @user.secret
+    end
+    client = Tumblr.new
+    @blogs_following = client.following["blogs"]
   end
 
 end
