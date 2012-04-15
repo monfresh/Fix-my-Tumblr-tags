@@ -1,11 +1,22 @@
 <h1>User: <%= @user.name %></h1>
+<br />
 
-<p>Email: <%= @user.email if @user.email %></p>
-<p>You are following these blogs: 
+
+<h3>These are your Tumblr blogs:</h3>
 <ul>
-	<% @blogs_following.each do |f| %>
-		<li><%= f["name"] %></li>
+	<% @blogs.each do |blog| %>
+		<li><%= blog["name"] %></li>
+	<% end %>
+</ul>
+<br />
+<h3>These are your post tags from your first blog that contain hyphens:</h3>
+<ul>
+	<% @first_blog_posts.each do |m| %>
+		<% m["tags"].each do |t| %>
+			<% if t.include? "-" %> 
+				<li><%= t %></li>
+			<% end %>
+		<% end %>
 	<% end %>
 </ul>
 
-</p>

@@ -30,7 +30,8 @@ def show
       config.oauth_token_secret = @user.secret
     end
     client = Tumblr.new
-    @blogs_following = client.following["blogs"]
+    @blogs = client.info["user"]["blogs"]
+    @first_blog_posts = client.posts("#{@blogs.first['name']}.tumblr.com")["posts"]
   end
 
 end
