@@ -9,12 +9,18 @@
 	<% end %>
 </ul>
 <br />
-<h3>These are your post tags from your first blog that contain hyphens:</h3>
+<h3>These are the post IDs from your first blog that contain hyphenated tags:</h3>
 <ul>
+
 	<% @first_blog_posts.each do |m| %>
 		<% m["tags"].each do |t| %>
 			<% if t.include? "-" %> 
-				<li><%= t %></li>
+				<li>id: <%= m["id"] %>, type: <%= m["type"] %>, title: <%= m["title"] %>  tags: <%= t %>, 
+					<%= form_tag "edit_tags" do %>
+						<%= hidden_field_tag "post_id", m["id"] %>
+						<%= submit_tag "Edit" %>
+					<% end %>
+				</li>
 			<% end %>
 		<% end %>
 	<% end %>

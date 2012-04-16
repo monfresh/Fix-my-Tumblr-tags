@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user?
+  #before_filter :correct_user?
 
   def index
     @users = User.paginate(:page => params[:page])
@@ -19,8 +19,7 @@ class UsersController < ApplicationController
     end
   end
 
-
-def show
+  def show
     @user = User.find(params[:id])
     tumblr_config = YAML.load(File.open("#{::Rails.root}/config/oauth.yml").read)
     Tumblr.configure do |config|
@@ -31,7 +30,19 @@ def show
     end
     client = Tumblr.new
     @blogs = client.info["user"]["blogs"]
-    @first_blog_posts = client.posts("#{@blogs.first['name']}.tumblr.com")["posts"]
+    total_posts = client.posts("#{@blogs.first['name']}.tumblr.com")["blog"]["posts"]
+    @first_blog_posts = client.posts("#{@blogs.first['name']}.tumblr.com", :limit => 10, :type => "text")["posts"]  
   end
+
+def edit_tags
+  client = Tumblr.new
+  post_body = client.posts("monfresh.tumblr.com", {:id => params[:post_id]})["posts"].first["body"]
+  post_title = client.posts("monfresh.tumblr.com", {:id => params[:post_id]})["posts"].first["title"]
+  client.edit("monfresh.tumblr.com", {:id => params[:post_id], 
+                                      :tags => "nice, how-to, at&amp;t, iphone, familytalk, how to", 
+                                      :type => "text", :body => post_body, 
+                                      :title => post_title})
+  redirect_to root_path, :notice => 'Tag successfully posted'
+end
 
 end
