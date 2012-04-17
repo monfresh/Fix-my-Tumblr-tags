@@ -1,6 +1,10 @@
 # Fix My Tumblr Tags
 
-Work in progress. Stay tuned.
+Work in progress. 
+
+Many thanks to Daniel Kehoe for his awesome [RailsApps project](http://railsapps.github.com/). This app was generated with the [Mongoid and OmniAuth template](https://github.com/RailsApps/rails3-mongoid-omniauth). It also uses Jamie Wilkinson's [omniauth-tumblr gem](https://github.com/jamiew/omniauth-tumblr), and John Bunting's [tumblr_client gem](https://github.com/codingjester/tumblr_client) for easy communication with the Tumblr v2 API.
+
+A full tutorial for putting this whole app together (once it's finished) will be posted on [http://moncefbelyamani.com](http://moncefbelyamani.com).
 
 ## Contributing
 
