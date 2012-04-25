@@ -1,28 +1,27 @@
 <h1>User: <%= @user.name %></h1>
 <br />
 
-
-<h3>These are your Tumblr blogs:</h3>
-<ul>
-	<% @blogs.each do |blog| %>
-		<li><%= blog["name"] %></li>
-	<% end %>
-</ul>
+<h3>Sorry, audio posts are not supported by the Tumblr API at the moment. I have reported the bug to them.</h3>
 <br />
-<h3>These are the post IDs from your first blog that contain hyphenated tags:</h3>
-<ul>
-
-	<% @first_blog_posts.each do |m| %>
-		<% m["tags"].each do |t| %>
-			<% if t.include? "-" %> 
-				<li>id: <%= m["id"] %>, type: <%= m["type"] %>, title: <%= m["title"] %>  tags: <%= t %>, 
-					<%= form_tag "edit_tags" do %>
-						<%= hidden_field_tag "post_id", m["id"] %>
-						<%= submit_tag "Edit" %>
+<h3>These are the posts from your first Tumblr blog that contain hyphenated tags:</h3>
+			
+	<%= form_tag "edit_tags" do %>
+		<ul>
+		<% @first_blog_posts.each do |m| %>
+			<% m["tags"].each do |t| %>
+				<% if t.include? "-" %> 
+					<% unless m["type"]=="audio" %>
+						<li>id: <%= m["id"] %>, type: <%= m["type"] %>, 
+							<% unless m["title"].nil? %>title: <%= m["title"] %>,<% end %>
+							tags: <%= t %>
+							<%= check_box_tag "post_ids[]", m["id"] %>
+						</li>
 					<% end %>
-				</li>
+				<% end %>
 			<% end %>
 		<% end %>
+		</ul>
+		<%= hidden_field_tag :id, @user.id %>
+		<%= submit_tag "Edit Checked" %>
 	<% end %>
-</ul>
 

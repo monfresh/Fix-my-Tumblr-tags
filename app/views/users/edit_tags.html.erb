@@ -1,0 +1,24 @@
+<h3>Results</h3>
+
+<p>
+	<% @results.each do |result| %>
+      
+        <% if result.empty? %>
+        <ul>
+			<li>Hmm. We weren't able to fix the tags for <%= result %>, but the original post hasn't been affected.</li>
+		</ul>
+        <% else %>
+        	<% if @hyphenated_tags = [] %>
+        		<ul>
+        			<li>Yay! Your tags for <%= @result_type %> post <%= result["id"] %> have been fixed!</li>
+        		</ul>
+        	<% else %>
+        		<ul>
+					<li>Hmm. We weren't able to fix the tags for <%= @result_type %> post <%= result["id"] %>. Please try again.</li>
+				</ul>
+			<% end %>
+
+        <% end %>
+    <% end %>  
+</p>
+

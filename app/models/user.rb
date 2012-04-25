@@ -6,7 +6,7 @@ class User
   field :email, :type => String
   field :token, :type => String
   field :secret, :type => String
-  attr_protected :provider, :uid, :name, :email, :token, :secret
+  attr_protected :provider, :uid, :name, :email
 
   def self.create_with_omniauth(auth)
     create! do |user|
