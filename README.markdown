@@ -10,6 +10,9 @@ I emailed Tumblr about this and they said they weren't planning on fixing it or 
 
 Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and wrote this Rails app to fix my tags, and to allow everyone else to fix theirs.
 
+## Which post types are supported?
+
+As of April 26, 2012, all post types are supported, except for audio posts. There is a problem with the Tumblr v2 API that prevents audio posts from being edited. I have reported the bug to Tumblr and am waiting to hear back from them.
 
 ## Thanks
 
