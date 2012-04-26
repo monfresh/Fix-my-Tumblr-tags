@@ -1,6 +1,17 @@
 # Fix My Tumblr Tags
 
-Work in progress. 
+Once a user signs in with their Tumblr account, this web app displays all the posts from the user's first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc..) and allows the user to edit those tags so that the hyphen is replaced with a space.
+
+## Why?
+
+At some point (late 2011, early 2012?), Tumblr stopped supporting hyphenated tags without any warning, explanation or remedy. Let's say you have a lot of posts tagged with "how-to", and you want your visitors to easily find them all by adding a link on your blog that looks like this: [http://chezmoncef.com/tagged/how-to](http://chezmoncef.com/tagged/how-to). When they click that link, they will get "The URL you requested could not be found."
+
+I emailed Tumblr about this and they said they weren't planning on fixing it or providing an easy way for their users to find out which of their posts contain hyphenated tags, and then fix them all at once by replacing the hyphen with a space. The Tumblr web interface also still allows you to create hyphenated tags, even though they're not supported.
+
+Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and wrote this Rails app to fix my tags, and to allow everyone else to fix theirs.
+
+
+## Thanks
 
 Many thanks to Daniel Kehoe for his awesome [RailsApps project](http://railsapps.github.com/). This app was generated with the [Mongoid and OmniAuth template](https://github.com/RailsApps/rails3-mongoid-omniauth). It also uses Jamie Wilkinson's [omniauth-tumblr gem](https://github.com/jamiew/omniauth-tumblr), and John Bunting's [tumblr_client gem](https://github.com/codingjester/tumblr_client) for easy communication with the Tumblr v2 API.
 
@@ -8,14 +19,7 @@ A full tutorial for putting this whole app together (once it's finished) will be
 
 ## Contributing
 
-If you make improvements to this application, please share with others.
-
-* Fork the project on GitHub.
-* Make your feature addition or bug fix.
-* Commit with Git.
-* Send the author a pull request.
-
-If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
+Feel free to fork this project and submit enhancements or code improvements.
 
 ## License
 
