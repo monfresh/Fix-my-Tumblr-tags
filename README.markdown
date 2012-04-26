@@ -1,12 +1,12 @@
 # Fix My Tumblr Tags
 
-Once a user signs in with their Tumblr account, this web app displays all the posts from the user's first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc..) and allows the user to edit those tags so that the hyphen is replaced with a space.
+Once a user signs in with their Tumblr account, this web app displays all the posts from the user's first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc.) and allows the user to edit those tags so that the hyphen is replaced with a space.
 
 ## Why?
 
-At some point (late 2011, early 2012?), Tumblr stopped supporting hyphenated tags without any warning, explanation or remedy. Let's say you have a lot of posts tagged with "how-to", and you want your visitors to easily find them all by adding a link on your blog that looks like this: [http://chezmoncef.com/tagged/how-to](http://chezmoncef.com/tagged/how-to). When they click that link, they will get "The URL you requested could not be found."
+At some point (late 2011, early 2012?), Tumblr stopped supporting hyphenated tags without any warning, explanation or remedy. Let's say you have a lot of posts tagged with "how-to", or a music blog with a lot of posts tagged with "hip-hop", and you want your visitors to easily find them all by adding a link on your blog that looks like this: [http://chezmoncef.com/tagged/how-to](http://chezmoncef.com/tagged/how-to). Well, as long as the tags contain hyphens, that link will result in "The URL you requested could not be found." The only solution is to replace the hyphen with a space (in the tag itself, not the URL).
 
-I emailed Tumblr about this and they said they weren't planning on fixing it or providing an easy way for their users to find out which of their posts contain hyphenated tags, and then fix them all at once by replacing the hyphen with a space. The Tumblr web interface also still allows you to create hyphenated tags, even though they're not supported.
+I emailed Tumblr about this and they said they weren't planning on fixing it or providing an easy way for their users to find out which of their posts contain hyphenated tags, and then fix them all at once by replacing the hyphen with a space. Moreover, the Tumblr web interface still allows you to add hyphenated tags to new posts, even though they're no longer supported.
 
 Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and wrote this Rails app to fix my tags, and to allow everyone else to fix theirs.
 
