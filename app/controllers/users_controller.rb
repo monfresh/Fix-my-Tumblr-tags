@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     client = Tumblr.new
     blogs = client.info["user"]["blogs"]
     total_posts = client.posts("#{blogs.first['name']}.tumblr.com")["blog"]["posts"]
+    @first_blog_name = blogs.first['name']
     @first_blog_posts = client.posts("#{blogs.first['name']}.tumblr.com", :limit => total_posts)["posts"]
   end
 

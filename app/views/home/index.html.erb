@@ -10,7 +10,9 @@ I emailed Tumblr about this and they said they weren't planning on fixing it or 
 Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and wrote this Rails app to fix my tags, and to allow everyone else to fix theirs.
 </p>
 
-<h3>Tumblr users who have fixed their tags:</h3>
-<% @users.each do |user| %>
-  <p><%=link_to user.name, user %></p>
+<% if user_signed_in? %>
+	<h3>Get started by viewing your posts with hyphenated tags:</h3>
+
+	<p><%=link_to "View posts", user_path(@user), :class => "btn btn-primary" %></p>
 <% end %>
+  

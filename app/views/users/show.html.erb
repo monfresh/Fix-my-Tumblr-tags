@@ -3,29 +3,35 @@
 
 <h3>Sorry, audio posts are not supported by the Tumblr API at the moment. I have reported the bug to them.</h3>
 <br />
-<h3>These are the posts from your first Tumblr blog that contain hyphenated tags:</h3>
+<h3>These are the published posts from "<%= "#{@first_blog_name}.tumblr.com" %>" that contain hyphenated tags:</h3>
+<br />
 			
 	<%= form_tag "edit_tags", :name => "edit_form" do %>
-		<ul>
+		<table class="table table-bordered table-striped">
+			<thead>
+    			<tr>
+      				<th>ID</th>
+      				<th>Type</th>
+      				<th>Title</th>
+      				<th>Tags</th>
+    			</tr>
+  			</thead>
 		<% @first_blog_posts.each do |m| %>
 			<% unless m["tags"].select{ |tag| tag.include? "-" }.empty? %>
 				<% unless m["type"]=="audio" %>
-					<li>id: <%= m["id"] %>, type: <%= m["type"] %>, 
-						<% unless m["title"].nil? %>title: <%= m["title"] %>,<% end %>
-						all tags: 
-						<ul>
-						<% m["tags"].each do |t| %>
-							<li>
-								<%= t %>
-							</li>
-						<% end %>
-						</ul>
-						<%= check_box_tag "post_ids[#{m['id']}]", m['id'], :name => "post_ids[]" %>
-					</li>
+					<tbody>
+						<tr>
+							<td><%= m["id"] %></td>
+							<td><%= m["type"] %></td>
+							<td><%= m["title"] %></td>
+							<td><% m["tags"].each do |t| %><%= t %>, <% end %></td>
+							<td><%= check_box_tag "post_ids[#{m['id']}]", m['id'], :name => "post_ids[]" %></td>
+						</tr>
+					</tbody>
 				<% end %>
 			<% end %>
 		<% end %>
-		</ul>
+		</table>
 		<%= hidden_field_tag :id, @user.id %>
 		<%= submit_tag "Edit Checked", :class => "btn btn-primary" %>
 		
