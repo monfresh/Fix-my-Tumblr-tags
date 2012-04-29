@@ -1,4 +1,16 @@
-<h3>Home</h3>
+<h2>What does this app do?</h2>
+<p>Once you sign in with your Tumblr account, this web app will display all the posts from your first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc.) and allows you to edit those tags so that the hyphen is replaced with a space.</p>
+
+<h2>Why would I want to replace the hyphen in my tags with a space?</h2>
+<p>
+At some point (late 2011, early 2012?), Tumblr stopped supporting hyphenated tags without any warning, explanation or remedy. Let's say you have a lot of posts tagged with "how-to", or a music blog with a lot of posts tagged with "hip-hop", and you want your visitors to easily find them all by adding a link on your blog that looks like this: [http://chezmoncef.com/tagged/how-to](http://chezmoncef.com/tagged/how-to). Well, as long as the tags contain hyphens, that link will result in "The URL you requested could not be found." The only solution is to replace the hyphen with a space (in the tag itself, not the URL).
+
+I emailed Tumblr about this and they said they weren't planning on fixing it or providing an easy way for their users to find out which of their posts contain hyphenated tags, and then fix them all at once by replacing the hyphen with a space. Moreover, the Tumblr web interface still allows you to add hyphenated tags to new posts, even though they're no longer supported.
+
+Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and wrote this Rails app to fix my tags, and to allow everyone else to fix theirs.
+</p>
+
+<h3>Tumblr users who have fixed their tags:</h3>
 <% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+  <p><%=link_to user.name, user %></p>
 <% end %>

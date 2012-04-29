@@ -5,23 +5,30 @@
 <br />
 <h3>These are the posts from your first Tumblr blog that contain hyphenated tags:</h3>
 			
-	<%= form_tag "edit_tags" do %>
+	<%= form_tag "edit_tags", :name => "edit_form" do %>
 		<ul>
 		<% @first_blog_posts.each do |m| %>
-			<% m["tags"].each do |t| %>
-				<% if t.include? "-" %> 
-					<% unless m["type"]=="audio" %>
-						<li>id: <%= m["id"] %>, type: <%= m["type"] %>, 
-							<% unless m["title"].nil? %>title: <%= m["title"] %>,<% end %>
-							tags: <%= t %>
-							<%= check_box_tag "post_ids[]", m["id"] %>
-						</li>
-					<% end %>
+			<% unless m["tags"].select{ |tag| tag.include? "-" }.empty? %>
+				<% unless m["type"]=="audio" %>
+					<li>id: <%= m["id"] %>, type: <%= m["type"] %>, 
+						<% unless m["title"].nil? %>title: <%= m["title"] %>,<% end %>
+						all tags: 
+						<ul>
+						<% m["tags"].each do |t| %>
+							<li>
+								<%= t %>
+							</li>
+						<% end %>
+						</ul>
+						<%= check_box_tag "post_ids[#{m['id']}]", m['id'], :name => "post_ids[]" %>
+					</li>
 				<% end %>
 			<% end %>
 		<% end %>
 		</ul>
 		<%= hidden_field_tag :id, @user.id %>
 		<%= submit_tag "Edit Checked" %>
+		
 	<% end %>
+	<%= button_to_function "Check / Uncheck All", "toggleChecked()" %>
 

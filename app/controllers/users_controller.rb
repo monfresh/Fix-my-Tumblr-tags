@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def show
     @user = User.find(params[:id]) 
 
@@ -28,14 +29,15 @@ class UsersController < ApplicationController
     end
 
     client = Tumblr.new
-    @blogs = client.info["user"]["blogs"]
-    total_posts = client.posts("#{@blogs.first['name']}.tumblr.com")["blog"]["posts"]
-    @first_blog_posts = client.posts("#{@blogs.first['name']}.tumblr.com", :limit => 400)["posts"] 
+    blogs = client.info["user"]["blogs"]
+    total_posts = client.posts("#{blogs.first['name']}.tumblr.com")["blog"]["posts"]
+    @first_blog_posts = client.posts("#{blogs.first['name']}.tumblr.com", :limit => total_posts)["posts"]
   end
+
 
   def edit_tags
     @user = User.find(params[:id])
-    post_ids = params[:post_ids]
+    post_ids = params[:post_ids].keys
     
     client = Tumblr.new
     blogs = client.info["user"]["blogs"]

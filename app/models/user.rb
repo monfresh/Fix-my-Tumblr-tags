@@ -6,7 +6,9 @@ class User
   field :email, :type => String
   field :token, :type => String
   field :secret, :type => String
-  attr_protected :provider, :uid, :name, :email
+  attr_protected :provider, :uid, :name, :email, :token, :secret
+
+  default_scope order_by(:uid => :desc)
 
   def self.create_with_omniauth(auth)
     create! do |user|

@@ -1,5 +1,7 @@
 # Fix My Tumblr Tags
 
+Work in progress.
+
 Once a user signs in with their Tumblr account, this web app displays all the posts from the user's first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc.) and allows the user to edit those tags so that the hyphen is replaced with a space.
 
 ## Why?
@@ -12,7 +14,7 @@ Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and
 
 ## Which post types are supported?
 
-As of April 26, 2012, all post types are supported, except for audio posts. There is a problem with the Tumblr v2 API that prevents audio posts from being edited. I have reported the bug to Tumblr and am waiting to hear back from them.
+As of April 28, 2012, all post types are supported, except for audio posts. There is a problem with the Tumblr v2 API that prevents audio posts from being edited. I have reported the bug to Tumblr and am waiting to hear back from them.
 
 ## Thanks
 
@@ -22,7 +24,7 @@ A full tutorial for putting this whole app together (once it's finished) will be
 
 ## Contributing
 
-Feel free to fork this project and submit enhancements or code improvements.
+Feel free to fork this project and submit enhancements, code improvements, and UI love.
 
 ## License
 
