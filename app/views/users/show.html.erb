@@ -1,18 +1,24 @@
-<h1>User: <%= @user.name %></h1>
+<div id="username">
+	
+<h1>Tumblr User: <%= @user.name %></h1>
+<br />
 <br />
 
-<h3>Sorry, audio posts are not supported by the Tumblr API at the moment. I have reported the bug to them.</h3>
+</div>
+<div id="table">
+	
+<p><strong>Below are the published posts from "<%= "#{@first_blog_name}.tumblr.com" %>" that contain hyphenated tags. 
 <br />
-<h3>These are the published posts from "<%= "#{@first_blog_name}.tumblr.com" %>" that contain hyphenated tags:</h3>
-<br />
+Check one or more posts, then click the blue button to fix your tags.</strong></p>
+<p>Sorry, the Tumblr API does not allow editing audio posts at the moment. I have reported the bug to Tumblr.</p>
+
 			
 	<%= form_tag "edit_tags", :name => "edit_form" do %>
 		<table class="table table-bordered table-striped">
 			<thead>
     			<tr>
-      				<th>ID</th>
       				<th>Type</th>
-      				<th>Title</th>
+      				<th>Post URL</th>
       				<th>Tags</th>
     			</tr>
   			</thead>
@@ -20,11 +26,10 @@
 			<% unless m["tags"].select{ |tag| tag.include? "-" }.empty? %>
 				<% unless m["type"]=="audio" %>
 					<tbody>
-						<tr>
-							<td><%= m["id"] %></td>
+						<tr>							
 							<td><%= m["type"] %></td>
-							<td><%= m["title"] %></td>
-							<td><% m["tags"].each do |t| %><%= t %>, <% end %></td>
+							<td><%= link_to m["post_url"], m["post_url"], :target => "_blank" %></td>
+							<td><%= m["tags"].map { |t| t }.join(", ") %></td>
 							<td><%= check_box_tag "post_ids[#{m['id']}]", m['id'], :name => "post_ids[]" %></td>
 						</tr>
 					</tbody>
@@ -33,8 +38,10 @@
 		<% end %>
 		</table>
 		<%= hidden_field_tag :id, @user.id %>
-		<%= submit_tag "Edit Checked", :class => "btn btn-primary" %>
+		<%= button_to_function "Check / Uncheck All", "toggleChecked()", :class => "btn" %>
+		<%= submit_tag "Fix the hyphenated tags for all checked posts", :class => "btn btn-primary" %>
 		
 	<% end %>
-	<%= button_to_function "Check / Uncheck All", "toggleChecked()", :class => "btn" %>
+
+</div>	
 

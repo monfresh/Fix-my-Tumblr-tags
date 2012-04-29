@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :correct_user?
+  before_filter :at_least_one_checked?, :only => :edit_tags
   
   def index
     @users = User.paginate(:page => params[:page])
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
 
   def edit_tags
     @user = User.find(params[:id])
+
     post_ids = params[:post_ids].keys
     
     client = Tumblr.new
@@ -139,12 +141,13 @@ class UsersController < ApplicationController
         sleep 2
         
       else
-        redirect_to root_path :flash => { :error => "Please provide a valid post type" }
+        redirect_to root_path, :flash => { :error => "Please provide a valid post type" }
       end
 
       @results.each do |result|
         unless result.empty?
           @result_type = client.posts(hostname, {:id => result["id"]})["posts"].first["type"]
+          @result_url = client.posts(hostname, {:id => result["id"]})["posts"].first["post_url"]
           new_tags = client.posts(hostname, {:id => result["id"]})["posts"].first["tags"]
           @hyphenated_tags = new_tags.select {|tag| tag.include? "-"}
         end

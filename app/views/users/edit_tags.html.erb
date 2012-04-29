@@ -10,7 +10,7 @@
         <% else %>
         	<% if @hyphenated_tags = [] %>
         		<ul>
-        			<li>Yay! Your tags for <%= @result_type %> post <%= result["id"] %> have been fixed!</li>
+        			<li>Yay! Your tags for <%= @result_type %> post <%= link_to result["id"], @result_url %> have been fixed!</li>
         		</ul>
         	<% else %>
         		<ul>
