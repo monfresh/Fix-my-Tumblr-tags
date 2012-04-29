@@ -27,8 +27,8 @@
 		<% end %>
 		</ul>
 		<%= hidden_field_tag :id, @user.id %>
-		<%= submit_tag "Edit Checked" %>
+		<%= submit_tag "Edit Checked", :class => "btn btn-primary" %>
 		
 	<% end %>
-	<%= button_to_function "Check / Uncheck All", "toggleChecked()" %>
+	<%= button_to_function "Check / Uncheck All", "toggleChecked()", :class => "btn" %>
 
