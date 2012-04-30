@@ -1,18 +1,54 @@
-<h2>What does this app do?</h2>
-<p>Once you sign in with your Tumblr account, this web app will display all the posts from your first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc.) and allows you to edit those tags so that the hyphen is replaced with a space.</p>
-
-<h2>Why would I want to replace the hyphen in my tags with a space?</h2>
-<p>
-At some point (late 2011, early 2012?), Tumblr stopped supporting hyphenated tags without any warning, explanation or remedy. Let's say you have a lot of posts tagged with "how-to", or a music blog with a lot of posts tagged with "hip-hop", and you want your visitors to easily find them all by adding a link on your blog that looks like this: [http://chezmoncef.com/tagged/how-to](http://chezmoncef.com/tagged/how-to). Well, as long as the tags contain hyphens, that link will result in "The URL you requested could not be found." The only solution is to replace the hyphen with a space (in the tag itself, not the URL).
-
-I emailed Tumblr about this and they said they weren't planning on fixing it or providing an easy way for their users to find out which of their posts contain hyphenated tags, and then fix them all at once by replacing the hyphen with a space. Moreover, the Tumblr web interface still allows you to add hyphenated tags to new posts, even though they're no longer supported.
-
-Since Tumblr wasn't going to do anything about this, I decided to learn Ruby and wrote this Rails app to fix my tags, and to allow everyone else to fix theirs.
-</p>
-
-<% if user_signed_in? %>
-	<h3>Get started by viewing your posts with hyphenated tags:</h3>
-
-	<p><%=link_to "View posts", user_path(@user), :class => "btn btn-primary" %></p>
+<% unless user_signed_in? %>
+<div class="hero-unit">
+	<h2>Wanna fix your Tumblr tags?</h2>
+	<p>Log in to get started. Once you sign in with your Tumblr account, this web app will display all the posts from your first blog that contain hyphenated tags (such as "hip-hop", "how-to", "gil scott-heron", etc.). <strong>Please note that this may take a while.</strong> You will then be able to choose one or more posts whose tags you want to fix.</p>
+	
+	<p><%= link_to "Log in", signin_path, :class => "btn btn-primary btn-large" %></p>
+</div>
+<% else %>
+<div class="hero-unit">
+	<p>Now that you're logged in, get started by viewing your posts with hyphenated tags.</p>
+	
+	<p><%=link_to "View posts", user_path(@user), :class => "btn btn-primary btn-large" %></p>
+</div>
 <% end %>
+
+<div class="row">
+	<div class="span4">
+    	<h2>Why should I fix my tags?</h2>
+			<p>
+			Let's say you have a lot of posts tagged with "how-to", or a music blog with a lot of posts tagged with "hip-hop", and you and your visitors want to easily find them all via an URL like this:
+			<%= link_to "http://chezmoncef.com/tagged/how-to", "http://chezmoncef.com/tagged/how-to" %>. Well, as long as the tags contain hyphens, that link will result in "The URL you requested could not be found." The only solution is to replace the hyphen with a space (in the tag itself, not the URL).
+			</p>
+		<h2>Can't I fix my tags on the Tumblr website?</h2>
+			<p>
+			Nope. There's no way for you to find out which of your posts contain hyphenated tags, unless you feel like going through all your posts one by one. I asked Tumblr if they were planning on making it easy to fix hyphenated tags, and they said "No." So, I wrote this app to allow all Tumblr users to easily fix their tags.
+			</p>
+	</div>
+
+	<div class="span4">
+    	<h2>Can I trust this app?</h2>
+			<p>
+			Absolutely. After you sign in, this is what happens:
+			<ol>
+			<li>Using the Tumblr API, this app goes through the first blog in your Tumblr account, and looks for posts that contain hyphenated tags.</li>
+			<li>Once it has found those posts, it displays the following info about each post: the type, the URL, and all the tags. Next to each post is a checkbox.</li>
+			<li>For each checked post, when you click on the "Fix the hyphenated tags for all checked posts" button, the app goes through the tags for each post, and replaces all hyphens with spaces, then saves the posts with the updated set of tags.</li>
+			<li>Once it's done fixing the tags (which can take a while), it displays the results to you to let you know which posts were successfully edited, and which were not, if any.</li>
+			</ol>
+			</p>
+
+			<p>During and after this entire process, the only thing that gets saved to our database is your Tumblr username, so the app can remember you if you log out then log back in.</p>
+			
+			<p>The full source code is available on <%= link_to "GitHub", "https://github.com/monfresh/Fix-my-Tumblr-tags" %>.
+			</p>
+	</div>
+
+	<div class="span4">
+    	<h2>Known issues</h2>
+			<p>
+			As of April 29, 2012, audio posts are not supported. I was not able to edit audio posts using the Tumblr API, and I have reported the bug to Tumblr. I haven't heard back from them yet.</p>
+	</div>
+</div>
+
   

@@ -10,7 +10,7 @@ Let's say you have a lot of posts tagged with "how-to", or a music blog with a l
 
 Hyphenated tags used to work, but for some reason, Tumblr decided to stop supporting them. They have every right to make changes to their service, but such a change that affects their users' content must be properly communicated, and must include an acceptable solution. Unfortunately, this limitation is still not evident to a Tumblr user since the Tumblr web interface allows you to add hyphenated tags to posts. If a Tumblr user somehow discovers this problem, there is no way for them to find out which of their posts contain hyphenated tags, short of editing their posts one by one.
 
-I shared my concerns with Tumblr, but they said they weren't planning on addressing any of them. So, I wrote this Rails app to fix my tags, and I hope you'll find useful too.
+I shared my concerns with Tumblr, but they said they weren't planning on addressing any of them. So, I wrote this Rails app to allow all Tumblr users to fix their tags. I hope you'll find it useful.
 
 ## Which post types are supported?
 
