@@ -30,7 +30,7 @@ Check one or more posts, then click the blue button to fix your tags.</strong></
 							<td><%= m["type"] %></td>
 							<td><%= link_to m["post_url"], m["post_url"], :target => "_blank" %></td>
 							<td><%= m["tags"].map { |t| t }.join(", ") %></td>
-							<td><%= check_box_tag "post_ids[#{m['id']}]", m['id'], :name => "post_ids[]" %></td>
+							<td><%= check_box_tag "post_ids[]", m['id'] %></td>
 						</tr>
 					</tbody>
 				<% end %>

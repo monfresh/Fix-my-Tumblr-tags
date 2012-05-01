@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       if post_ids_raw.nil?
         redirect_to user_path(@user), :alert => "Please check at least one post"
       else
-        @post_ids = params[:post_ids].keys
+        @post_ids = params[:post_ids]
       end
     end
 
