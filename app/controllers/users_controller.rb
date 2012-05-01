@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     hostname = "#{name}.tumblr.com"
     @results = []
 
-    post_ids.each do |id|
+    @post_ids.each do |id|
       id = id.to_i
       type = client.posts(hostname, {:id => id})["posts"].first["type"]
       date = client.posts(hostname, {:id => id})["posts"].first["date"]
