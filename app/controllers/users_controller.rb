@@ -98,7 +98,7 @@ class UsersController < ApplicationController
                                         :title => (title unless title.nil?), 
                                         :description => (description unless description.nil?)}.delete_if{ |k,v| v.nil? })
         @results.push(link_result)
-        sleep 2
+        #sleep 2
 
       when "chat"
                title = client.posts(hostname, {:id => id})["posts"].first["title"]
