@@ -43,8 +43,6 @@ class UsersController < ApplicationController
   def edit_tags
     @user = User.find(params[:id])
 
-    post_ids = params[:post_ids].keys
-    
     client = Tumblr.new
     blogs = client.info["user"]["blogs"]
     name = blogs.first["name"]
