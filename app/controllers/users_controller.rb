@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :correct_user?
-  before_filter :at_least_one_checked?, :only => :edit_tags
+  #before_filter :at_least_one_checked?, :only => :edit_tags
   
   def index
     @users = User.paginate(:page => params[:page])
@@ -42,6 +42,13 @@ class UsersController < ApplicationController
 
   def edit_tags
     @user = User.find(params[:id])
+
+    post_ids_raw = params[:post_ids]
+    if post_ids_raw.nil?
+      redirect_to user_path(@user), :alert => "Please check at least one post"
+    else
+      post_ids = params[:post_ids].keys
+    end
 
     client = Tumblr.new
     blogs = client.info["user"]["blogs"]
