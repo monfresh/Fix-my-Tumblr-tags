@@ -30,4 +30,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def at_least_one_checked?
+      @user = User.find(params[:id])
+      post_ids_raw = params[:post_ids]
+      if post_ids_raw.nil?
+        redirect_to user_path(@user), :alert => "Please check at least one post"
+      else
+        post_ids = params[:post_ids].keys
+      end
+    end
+
 end
