@@ -1,24 +1,10 @@
 <h3>Results</h3>
 
-<p>
-	<% @results.each do |result| %>
-      
-        <% if result.empty? %>
-        <ul>
-			<li>Hmm. We weren't able to fix the tags for <%= result %>, but the original post hasn't been affected.</li>
-		</ul>
-        <% else %>
-        	<% if @hyphenated_tags = [] %>
-        		<ul>
-        			<li>Yay! Your tags for <%= @result_type %> post <%= link_to result["id"], @result_url %> have been fixed!</li>
-        		</ul>
-        	<% else %>
-        		<ul>
-					<li>Hmm. We weren't able to fix the tags for <%= @result_type %> post <%= result["id"] %>. Please try again.</li>
-				</ul>
-			<% end %>
+<% if @hyphenated_tags == [] %>
+        <p>Yay! Your tags have been fixed!</p>
+<% else %>
+        <p>Hmm. One or more of your posts were not fixed. Please <%= link_to "view your posts", user_path(@user) %> and try again.</p>
+<% end %>
 
-        <% end %>
-    <% end %>  
-</p>
+
 

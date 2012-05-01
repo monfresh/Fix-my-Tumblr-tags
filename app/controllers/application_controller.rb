@@ -40,4 +40,25 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def tumblr_api
+      @user = User.find(params[:id]) 
+
+      #tumblr_config = YAML.load(File.open("#{::Rails.root}/config/oauth.yml").read)
+
+      Tumblr.configure do |config|
+        #config.consumer_key = tumblr_config['tumblr']['key']
+        #config.consumer_secret = tumblr_config['tumblr']['secret']
+        config.consumer_key = ENV["TUMBLR_KEY"]
+        config.consumer_secret = ENV["TUMBLR_SECRET"]
+        config.oauth_token = @user.token
+        config.oauth_token_secret = @user.secret
+      end
+
+      @client = Tumblr.new
+      @blogs = @client.info["user"]["blogs"]
+      @first_blog_name = @blogs.first["name"]
+      @hostname = "#{@first_blog_name}.tumblr.com"
+      @total_posts = @client.posts("#{@first_blog_name}.tumblr.com")["blog"]["posts"]
+      @first_blog_posts = @client.posts("#{@first_blog_name}.tumblr.com", :limit => @total_posts)["posts"]
+    end
 end
