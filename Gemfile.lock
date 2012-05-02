@@ -147,6 +147,7 @@ GEM
     multi_json (1.2.0)
     multipart-post (1.1.5)
     netrc (0.7.1)
+    newrelic_rpm (3.3.4.1)
     nokogiri (1.5.2)
     oauth (0.4.5)
     omniauth (1.0.3)
@@ -268,6 +269,7 @@ DEPENDENCIES
   machinist
   mongoid (>= 2.4.8)
   mongoid-rspec (>= 1.4.4)
+  newrelic_rpm
   omniauth (>= 1.0.3)
   omniauth-tumblr
   omniauth-twitter

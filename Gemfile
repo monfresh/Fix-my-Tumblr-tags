@@ -40,3 +40,4 @@ gem "will_paginate", ">= 3.0.3"
 gem "tumblr_client", "~> 0.6"
 gem "heroku"
 gem "thin"
+gem 'newrelic_rpm'
