@@ -70,6 +70,11 @@ GEM
       nokogiri (>= 1.5.0)
     daemons (1.1.8)
     database_cleaner (0.7.2)
+    delayed_job (3.0.2)
+      activesupport (~> 3.0)
+    delayed_job_mongoid (1.0.8)
+      delayed_job (~> 3.0.0)
+      mongoid (>= 2.0)
     diff-lcs (1.1.3)
     em-websocket (0.3.6)
       addressable (>= 2.1.1)
@@ -253,7 +258,10 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   cucumber-rails (>= 1.3.0)
+  daemons
   database_cleaner (>= 0.7.2)
+  delayed_job
+  delayed_job_mongoid
   email_spec (>= 1.2.1)
   factory_girl_rails (>= 3.1.0)
   growl

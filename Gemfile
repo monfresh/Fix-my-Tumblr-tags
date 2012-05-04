@@ -41,3 +41,6 @@ gem "tumblr_client", "~> 0.6"
 gem "heroku"
 gem "thin"
 gem 'newrelic_rpm'
+gem 'delayed_job'
+gem 'delayed_job_mongoid'
+gem "daemons"
