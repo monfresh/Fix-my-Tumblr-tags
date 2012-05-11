@@ -7,7 +7,7 @@
 </div>
 <div id="table">
 	
-<p><strong>Below are the published posts from "<%= "#{@first_blog_name}.tumblr.com" %>" that contain hyphenated tags.
+<p><strong>Below are the published posts from "<%= "#{@post_lookup.first_blog_name}.tumblr.com" %>" that contain hyphenated tags.
 
 Check one or more posts, then click the blue button to fix your tags. Please note that this may take a while.</strong></p>
 <p>Sorry, the Tumblr API does not allow editing audio posts at the moment. I have reported the bug to Tumblr.</p>
@@ -22,7 +22,7 @@ Check one or more posts, then click the blue button to fix your tags. Please not
       				<th>Tags</th>
     			</tr>
   			</thead>
-		<% @first_blog_posts.each do |m| %>
+		<% @post_lookup.first_blog_posts.each do |m| %>
 			<% unless m["tags"].select{ |tag| tag.include? "-" }.empty? %>
 				<% unless m["type"]=="audio" %>
 					<tbody>

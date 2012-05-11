@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :correct_user?
-  #before_filter :at_least_one_checked?, :only => :edit_tags
-  before_filter :tumblr_api, :only => [:show, :edit_tags]
+  before_filter :set_current_user
+  before_filter :at_least_one_checked?, :only => [:edit_tags]
   
   def index
     @users = User.paginate(:page => params[:page])
@@ -20,15 +20,13 @@ class UsersController < ApplicationController
 
 
   def show
-    
+    @post_lookup = PostLookup.new
   end
 
 
   def edit_tags
-    @user = User.find(params[:id])
-    @user.edit_tags
-    #redirect_to root_path, notice: "Editing your tags. Please be patient."
-    
-  end #edit_tags
+    @post_lookup = PostLookup.new
+    @post_lookup.edit_tags
+  end 
 
 end

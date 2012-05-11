@@ -44,3 +44,4 @@ gem 'newrelic_rpm'
 gem 'delayed_job'
 gem 'delayed_job_mongoid'
 gem "daemons"
+gem "stalker"
