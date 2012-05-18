@@ -1,6 +1,6 @@
 class EditJob < Struct.new(:user)
   def perform
-    @results = []
+    
 
   		tumblr_config = YAML.load(File.open("#{::Rails.root}/config/oauth.yml").read)
 
@@ -42,7 +42,7 @@ class EditJob < Struct.new(:user)
 			  text_result = @client.edit(@hostname, {:id => id, :tags => fixed_tags, :date => date, :body => body, 
 			                                :title => (title unless title.nil?)}.delete_if{ |k,v| v.nil? })
 			end          
-			@results.push(text_result)
+			
 
 
 			when "photo"
@@ -55,8 +55,7 @@ class EditJob < Struct.new(:user)
 			while photo_result.empty?
 			  photo_result= @client.edit(@hostname, {:id => id, :tags => fixed_tags, :date => date, :link => (link unless link.nil?), :photoset_layout => (photoset_layout unless photoset_layout.nil?), :caption => (caption unless caption.nil?)}.delete_if{ |k,v| v.nil? })
 			end
-			@results.push(photo_result)
-
+			
 
 			when "quote"
 			 quote = @client.posts(@hostname, {:id => id})["posts"].first["text"]
@@ -70,7 +69,7 @@ class EditJob < Struct.new(:user)
 			                                :quote => quote, 
 			                                :source => (source unless source.nil?)}.delete_if{ |k,v| v.nil? })
 			end
-			@results.push(quote_result)
+			
 
 
 			when "link"
@@ -88,7 +87,7 @@ class EditJob < Struct.new(:user)
 			                                :title => (title unless title.nil?), 
 			                                :description => (description unless description.nil?)}.delete_if{ |k,v| v.nil? })
 			end
-			@results.push(link_result)
+			
 
 
 			when "chat"
@@ -103,7 +102,7 @@ class EditJob < Struct.new(:user)
 			                                :conversation => conversation, 
 			                                :title => (title unless title.nil?)}.delete_if{ |k,v| v.nil? })
 			end
-			@results.push(chat_result)
+			
 
 
 			#when "audio"
@@ -128,7 +127,7 @@ class EditJob < Struct.new(:user)
 			  video_result = @client.edit(@hostname, {:id => id, :tags => fixed_tags, :date => date, 
 			                                :caption => (caption unless caption.nil?)}.delete_if{ |k,v| v.nil? })
 			end
-			@results.push(video_result)
+			
 
 
 			else
@@ -137,11 +136,6 @@ class EditJob < Struct.new(:user)
 
     	end #post_ids loop
 
-	    @results.each do |result|
-	        unless result.empty?
-	          new_tags = @client.posts(@hostname, {:id => result["id"]})["posts"].first["tags"]
-	          @hyphenated_tags = new_tags.select {|tag| tag.include? "-"}
-	        end
-	    end
+	    
 	end
 end

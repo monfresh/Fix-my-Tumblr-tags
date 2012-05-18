@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   def edit_tags
     Delayed::Job.enqueue EditJob.new(User.current)
+    redirect_to root_path, :notice => "Fixing your tags. Hang tight."
   end 
 
 end
