@@ -1,6 +1,6 @@
 <h3>Results</h3>
 
-<% if @post_lookup.hyphenated_tags == [] %>
+<% if @hyphenated_tags == [] %>
         <p>Yay! Your tags have been fixed!</p>
 <% else %>
         <p>Hmm. One or more of your posts were not fixed. Please <%= link_to "view your posts", user_path(@user) %> and try again.</p>

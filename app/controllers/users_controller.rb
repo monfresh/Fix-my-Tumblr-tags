@@ -25,8 +25,7 @@ class UsersController < ApplicationController
 
 
   def edit_tags
-    @post_lookup = PostLookup.new
-    @post_lookup.edit_tags
+    Delayed::Job.enqueue EditJob.new(User.current)
   end 
 
 end

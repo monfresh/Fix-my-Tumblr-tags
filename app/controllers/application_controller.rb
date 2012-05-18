@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     else
       @post_ids = params[:post_ids]
       current_user.post_ids = @post_ids
+      current_user.save
     end
   end
 
