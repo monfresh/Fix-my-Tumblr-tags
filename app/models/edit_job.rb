@@ -1,14 +1,11 @@
 class EditJob < Struct.new(:user)
   def perform
     
-
-  		tumblr_config = YAML.load(File.open("#{::Rails.root}/config/oauth.yml").read)
-
 		Tumblr.configure do |config|
 			config.consumer_key = tumblr_config['tumblr']['key']
 			config.consumer_secret = tumblr_config['tumblr']['secret']
-			#config.consumer_key = ENV["TUMBLR_KEY"]
-			#config.consumer_secret = ENV["TUMBLR_SECRET"]
+			config.consumer_key = ENV["TUMBLR_KEY"]
+			config.consumer_secret = ENV["TUMBLR_SECRET"]
 			config.oauth_token = user.token
 			config.oauth_token_secret = user.secret
 		end
